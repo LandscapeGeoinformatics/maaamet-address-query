@@ -1,0 +1,33 @@
+[project]
+authors = ["Alexander Kmoch <alexander.kmoch@ut.ee>"]
+channels = ["conda-forge"]
+description = "Add a short description here"
+name = "maaamet-address-query"
+platforms = ["win-64", "linux-64", "osx-64","osx-arm64"]
+version = "0.1.0"
+license = "MIT"
+repository = "https://github.com/LandscapeGeoinformatics/maaamet-address-query"
+
+[tasks]
+dev = "uvicorn maaamet-address-query.main:app --reload"
+start = "uvicorn maaamet-address-query.main:app --host 0.0.0.0"
+lint = "ruff lint"
+
+[dependencies]
+python = "3.10.*"
+pyproj = ">=3.7.0,<4"
+shapely = ">=2.0.6,<3"
+fastapi = ">=0.115.4,<0.116"
+uvicorn = ">=0.32.0,<0.33"
+ruff = ">=0.7.1,<0.8"
+pytest = ">=8.3.3,<9"
+urllib3 = ">=2.2.3,<3"
+
+[tool.pixi.feature.dev.dependencies]
+ruff = ">=0.7.1,<0.8"
+
+[tool.pixi.feature.test.dependencies]
+pytest = ">=8.3.3,<9"
+
+[tool.pixi.feature.test.tasks]
+test = "pytest"
